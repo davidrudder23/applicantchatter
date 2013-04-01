@@ -1,0 +1,6 @@
+Thank you for posting a new question for ${question.employer.name} to ApplicantChatter.
+Subject: ${question.subject}
+Question:
+${question.question}
+
+To see the answers, please go to @@{Application.question(question.viewId)}
