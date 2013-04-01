@@ -1,0 +1,8 @@
+Dear ${employee.name},
+A new question was posted to AskEmployee.
+Subject: ${question.subject}
+Question:
+${question.question}
+
+To answer: @@{Application.answer(question.answerId)}
+To see the question: @@{Application.question(question.viewId)}
