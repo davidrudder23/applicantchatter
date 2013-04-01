@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'Ask A Question' /}
+
+#{set 'moreScripts'}
+<script>
+
+function validate() {
+	// Captcha
+	var captchaId = $("#captchaId").val();
+	var captchaCode = $("#captchaCode").val();
+	
+	var valid = true;
+    jQuery.ajax({
+        url:    '@{Security.ajaxConfirmCaptcha}?id='+captchaId+"&code="+captchaCode,
+        success: function(result) {
+			if(result != "true") {
+				showError("captcha failed");
+				valid = false;
+			}
+		},
+        async:   false
+	});  
+    
+	return valid;
+}
+</script>
+#{/set}
+
+
+<div class="row">
+	<div class="span8">
+	#{form @Application.submitQuestion(), method:'POST', id:'question-form', onSubmit:'return validate()'}
+	<ul>
+	#{if employers.size()!=1}
+	<li><h4>Ask a Question</h4>
+	<label>Employer</label>#{select 'question.employer.id',  class:'field span8', items:employers, id:'employers-select', valueProperty:'id', labelProperty:'name'/}</li>
+	#{/if}#{else}
+	<li><h4>Ask ${employer.name} a Question</h4></li>
+	<input type="hidden" name="question.employer.id" value="${employer.id}"
+	#{/else}
+	<li><label>Email</label><input class="field span8" type="text" name="question.email" placeholder="(optional)"></li>
+	<li><label>Subject</label><input class="field span8" type="text" name="question.subject"></li>
+	<li><label>Question</label><textarea class="field span8" name="question.question" rows=10 cols=30></textarea></li>
+    
+    <li><img src="@{Security.captcha(captchaId)}" />
+    <br />
+    <label>Please enter the captcha</label>
+    <input type="text" name="captchaCode" id="captchaCode" size="18" value="" />
+    <input type="hidden" name="captchaId" id="captchaId" value="${captchaId}" />
+    </li>
+    
+    <button class="btn btn-info">Ask</button></li>
+	</ul>
+	#{/form}
+	</div>
+</div>
