@@ -1,0 +1,6 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> db 1.0.1
+
