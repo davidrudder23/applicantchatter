@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Ask A Question' /}
+
+<div class="container">
+
+	<div class="row">
+		<div class="span-12">
+			<div class="hero">
+				<h1>${question.subject}</h1>
+				<h3>${question.question}</h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span-12">
+			<div class="hero">
+				<h1>Answers</h1>
+				#{if question.answers.size()<=0}
+				<h3>There are no answers at this point</h3>
+				#{/if} 
+				#{else}
+				        #{list items:question.answers, as:'answer'}
+						<p>
+							<h3>
+							#{if answer.canVote()}
+							<a href="@{Application.submitVote(answer.id, true)}"><button class="btn btn-danger"><i class="icon-hand-up icon-#{if answer.hasVotedFor()}white#{/if}#{else}blue#{/else}"></i></button></a>
+							<a href="@{Application.submitVote(answer.id, false)}"><button class="btn btn-danger"><i class="icon-hand-down icon-#{if answer.hasVotedAgainst()}white#{/if}#{else}blue#{/else}"></i></button></a>
+							#{/if}
+							Answer from ${answer.name}</h3>
+						</p>
+						<h3>Employee for ${answer.monthsAtJob} months in position "${answer.position}"</h3>
+						<p><em>Votes: ${answer.getVoteTally()}</em></p>
+						<p>${answer.comments}</p>
+				        #{/list}
+				#{/else}
+			</div>
+		</div>
+	</div>
+	
+	
+
+	#{if question.canAnswer()}
+	<section id="answer-button">
+	<div class="row">
+		<div class="span12">
+			<div class="footer">
+			<p>
+				<a href="@{Application.answer(question.answerId)}" class="btn btn-info">Answer this question</a>
+			</p>
+			</div>
+		</div>
+	</div>
+	</section>
+	#{/if}
+	
+</div>
