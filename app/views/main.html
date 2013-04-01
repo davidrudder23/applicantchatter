@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ApplicantChatter: #{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+		<link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/superhero/bootstrap.min.css">
+		<link rel="stylesheet" media="screen" href="//bootswatch.com/css/bootswatch.css">
+        
+        #{get 'moreStyles' /}
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.js"></script>
+		<script src="@{'/public/javascripts/main.js'}"></script>
+        #{get 'moreScripts' /}
+        
+        <script>
+        
+        $().ready(function() {
+        	#{if !utils.StringUtils.isEmpty(flash.success)}showSuccess('${flash.success.raw()}');#{/if}
+           	#{if !utils.StringUtils.isEmpty(flash.error)}showError('${flash.error.raw()}');#{/if}
+        });
+        </script>
+        
+    </head>
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+	        <div class="navbar-inner">
+		        <div class="container">
+		        	<a class="brand" href="@{Application.index}">ApplicantChatter</a>
+		        	#{if controllers.Security.getLoggedInEmployee()==null}
+		        	<ul class="nav pull-right signup">
+		        	<li><a href="@{Account.signup()}">Sign Up!</a></li>
+		        	</ul>
+		        	#{/if}
+		        	
+		        	<ul class="nav pull-right">
+		        	<li><a href="@{Application.ask()}">Ask a Question</a></li>
+		        	<li><a href="/ask/reliable_response">Contact Us</a></li>
+		        	
+		        	#{if controllers.Security.getLoggedInEmployee()==null}
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown">Employer Login <strong class="caret"></strong></a>
+						<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+							<!-- Login form here -->
+							<form action="@{Security.login()}" method="POST" name="login-form">
+							<ul>
+								<li>Email: <input type="text" id="email" name="email"/></li>
+								<li>Password: <input type="password" id="password" name="password"/></li>
+								<li><button class="btn btn-primary">Login</button></li>
+							</ul>
+							</form>
+						</div>
+					</li>
+		        	#{/if}
+		        	#{else}
+		        	<li><a href="@{Security.logout()}">Logout</a></li>
+					#{/else}
+					
+		        	</ul>
+		        </div>
+	        </div>
+        </div>
+	
+	<div class="wrap">
+		<div class="container" id="main">
+        
+		<div class="alert alert-success" id="alert-success" style="display:none">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<span id="alert-success-text"></span>
+		</div>
+
+		<div class="alert alert-error" id="alert-error" style="display:none">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<span id="alert-error-text"></span>
+		</div>
+
+        #{doLayout /}
+        </div>
+	</div>        
+        
+	<footer class="footer" >
+		<ul class="footer">
+		<li><a href="@{Contact.about()}">About Us</a> | </li>
+		<li><a href="@{Contact.faq()}">FAQ</a> | </li>
+		<li><a href="@{Contact.tos()}">TOS</a> | </li>
+		<li><a href="@{Contact.privacy()}">Privacy</a></li>
+		<ul>
+	</footer>
+
+    </body>
+</html>
