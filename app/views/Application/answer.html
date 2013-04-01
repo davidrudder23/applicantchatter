@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Ask A Question' /}
+
+<div class="row">
+	<div class="span-12">
+		<div class="hero">
+			<h1>${question.subject}</h1>
+			<h3>${question.question}</h3>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span-12">
+	#{form @Application.submitAnswer(), method:'POST', id:'question-form'}
+		<input class="field span8" type="hidden" name="answer.question.id" value="${question.id}" />
+		<label>Name</label>
+		<input class="field span8" name="answer.name" placeholder="(optional)"/>
+		<label>Months at Job</label>
+		<input class="field span8" name="answer.monthsAtJob"/>
+		<label>Position at ${question.employer.name}</label>
+		<input class="field span8" name="answer.position"/>
+		<label>Answer</label>
+		<textarea class="field span8" cols="90" rows="10" name="answer.comments"></textarea>
+		<br/>
+		<button class="btn">Submit</button>
+	#{/form}
+	</div>
+</div>
