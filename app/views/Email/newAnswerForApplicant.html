@@ -1,0 +1,19 @@
+#{extends 'Email/emailTemplate.html' /}
+#{set title:'A New Question Was Submitted to ApplicantChatter' /}
+
+
+<p>A new answer on ApplicantChatter was submitted to your question "${question.question}".</p>
+<p>From: ${answer.name}</p>
+<p>Position: ${answer.position}</p>
+<p>Time with Employer: ${answer.monthsAtJob}</p>
+<p>Comments:<br/>
+${answer.comments}
+</p>
+<ul>
+<li>To see the answers, please go to @@{Application.question(question.viewId)}</li>
+</ul>
+
+
+</body>
+
+</html>
