@@ -1,0 +1,17 @@
+#{extends 'Email/emailTemplate.html' /}
+#{set title:'A New Question Was Submitted to ApplicantChatter' /}
+
+
+<p>Thank you for posting a new question for ${question.employer.name} to ApplicantChatter.</p>
+<p>Subject: ${question.subject}</p>
+<p>Question:<br/>
+${question.question}
+</p>
+<ul>
+<li>To see the answers, please go to @@{Application.question(question.viewId)}</li>
+</ul>
+
+
+</body>
+
+</html>
