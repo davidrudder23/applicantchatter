@@ -1,0 +1,10 @@
+A new answer on ApplicantChatter was submitted to your question "${question.question}".
+
+From: ${answer.name}
+Position: ${answer.position}
+Time with Employer: ${answer.monthsAtJob}
+Comments:
+${answer.comments}
+
+To see the answers, please go to @@{Application.question(question.viewId)}
+
