@@ -43,7 +43,7 @@ function validate() {
 	<li><label>Administrator Email</label><input class="field span8" type="text" name="employee.email"></li>
 	<li><label>Administrator Password</label><input class="field span8" type="password" name="password"></li>
 	<li><label>Verify Password</label><input class="field span8" type="password" name="passwordVerify"></li>
-    <li><img src="@{Security.captcha(captchaId)}" />
+    <li><img src="@{Security.captcha(captchaId)}" class="captcha-image"/>
     <br />
     <label>Please enter the captcha</label>
     <input type="text" name="captchaCode" id="captchaCode" size="18" value="" />
