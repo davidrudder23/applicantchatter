@@ -42,7 +42,7 @@ function validate() {
 	<li><label>Subject</label><input class="field span8" type="text" name="question.subject"></li>
 	<li><label>Question</label><textarea class="field span8" name="question.question" rows=10 cols=30></textarea></li>
     
-    <li><img src="@{Security.captcha(captchaId)}" />
+    <li><img src="@{Security.captcha(captchaId)}" class="captcha-image"/>
     <br />
     <label>Please enter the captcha</label>
     <input type="text" name="captchaCode" id="captchaCode" size="18" value="" />
