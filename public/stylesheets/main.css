@@ -3,12 +3,9 @@ html,body{
 }
 
 #landing-top {
-	height: 630px;
 	width: 100%;
 	opacity: 75%;
-	top: 50px;
 	left: 0;
-	position: absolute;
 }
 
 p.landing-title {
@@ -26,7 +23,6 @@ p.landing-text {
 }
 
 #horizontal-divider {
-	position: absolute;
 	top: 474px;
 	left: 0;
 	width: 100%;
