@@ -84,3 +84,8 @@ ul.footer li{
 
 .captcha-image {
 }
+
+.form {
+	margin:0 auto;
+	float:none;
+}

@@ -27,14 +27,14 @@ function validate() {
 #{/set}
 
 <div class="row">
-	<div class="span8">
+	<div class="span8 form">
 	<div class="hero">
 	<strong>ApplicantChatter is free!  Sign-up now to test it out!</strong>
 	</div>
 </div>
 
 <div class="row">
-	<div class="span8">
+	<div class="span8 form">
 	#{form @Account.signupSubmit(), method:'POST', id:'signup-form', onSubmit:"return validate()"}
 	<ul>
 	<li><label>Company or Department Name</label><input class="field span8" type="text" name="employer.name" ></li>
