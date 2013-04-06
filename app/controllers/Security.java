@@ -59,7 +59,7 @@ public class Security extends Controller {
 	
 	public static void captcha(String id) {
 	    Images.Captcha captcha = Images.captcha();
-	    String code = captcha.getText("#E4EAFD");
+	    String code = captcha.getText("#555555");
 	    Logger.debug ("storing captcha code at %s with %s", id, code);
 	    Cache.set("captcha-"+id, code, "10mn");
 	    renderBinary(captcha);
